@@ -1,9 +1,9 @@
-import { Branch, BRANCH_COLORS, BRANCH_MAP, COMPANIES } from "@/app/data";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Image from "next/image";
-import { Badge, MapPin, Users } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import { Separator } from "./ui/separator";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Separator, Tooltip } from "radix-ui";
+import { TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { BRANCH_MAP } from "@/app/data";
 
 export default function CompanyCard({
   company,
@@ -58,7 +58,7 @@ export default function CompanyCard({
             const isActive = activeBranch === b;
 
             return (
-              <Tooltip key={b}>
+              <Tooltip key={b} asChild>
                 <TooltipTrigger
                   onClick={(e) => {
                     e.stopPropagation();
@@ -102,10 +102,6 @@ export default function CompanyCard({
           <span className="text-[11px] text-muted-foreground/40 font-mono tracking-wide">
             #{String(company.sl).padStart(2, "0")}
           </span>
-          {/* <span className="inline-flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:gap-1.5">
-            View details
-            <ChevronRight className="h-3.5 w-3.5" />
-          </span> */}
         </div>
       </CardContent>
     </Card>
