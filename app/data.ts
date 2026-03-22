@@ -10,7 +10,7 @@ export const COMPANIES = [
   {
     sl: 2,
     name: "Schneider Electricals",
-    branches: ["EE", "EC"],
+    branches: ["EE"],
     location: "Bangalore, Chennai",
     vacancy: "Trainee Engineer (Direct / NAPS)",
     salary: "",
@@ -34,7 +34,7 @@ export const COMPANIES = [
   {
     sl: 5,
     name: "Britco & Bridco Pvt Ltd",
-    branches: ["EC", "EE"],
+    branches: ["EE"],
     location: "All over Kerala",
     vacancy: "50 positions",
     salary: "",
@@ -68,7 +68,7 @@ export const COMPANIES = [
   {
     sl: 9,
     name: "Vikram Solar",
-    branches: ["EE", "EC", "ME"],
+    branches: ["EE", "ME"],
     location: "Chennai",
     vacancy: "Shift In-Charge",
     salary: "₹19,000",
@@ -76,7 +76,7 @@ export const COMPANIES = [
   {
     sl: 10,
     name: "ZF Commercial Vehicle Control Systems",
-    branches: ["EE", "EC", "ME"],
+    branches: ["EE", "ME"],
     location: "Chennai",
     vacancy: "",
     salary: "",
@@ -100,7 +100,7 @@ export const COMPANIES = [
   {
     sl: 13,
     name: "Icher Mobile Technologies Pvt Ltd",
-    branches: ["EE", "EC"],
+    branches: ["EE"],
     location: "Kottakkal",
     vacancy: "10 positions",
     salary: "",
@@ -125,7 +125,7 @@ export const COMPANIES = [
   {
     sl: 16,
     name: "KIMS Group of Institutions",
-    branches: ["GEN"],
+    branches: ["CT"],
     location: "Valanchery",
     vacancy:
       "Telecallers, Office Staff, Faculty – BCA, Dialysis, Medical Imaging, Digital Marketing",
@@ -150,7 +150,7 @@ export const COMPANIES = [
   {
     sl: 19,
     name: "WIPRO Infrastructure Engineering",
-    branches: ["EE", "EC", "ME"],
+    branches: ["EE", "ME"],
     location: "Chennai",
     vacancy: "",
     salary: "₹18,000",
@@ -166,7 +166,7 @@ export const COMPANIES = [
   {
     sl: 21,
     name: "Sysbreeze Technologies Pvt Ltd",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Kerala",
     vacancy:
       "Python Developer, Data Science Intern, MERN Stack Developer (0–1 yr exp)",
@@ -175,7 +175,7 @@ export const COMPANIES = [
   {
     sl: 22,
     name: "Violin Technologies Pvt Ltd",
-    branches: ["EC", "EE"],
+    branches: ["EE"],
     location: "Chennai",
     vacancy: "Production Engineer / Trainee Engineer",
     salary: "",
@@ -269,7 +269,7 @@ export const COMPANIES = [
   {
     sl: 33,
     name: "Impex Home Appliances",
-    branches: ["EC", "EE"],
+    branches: ["EE"],
     location: "All over Kerala",
     vacancy: "15 positions",
     salary: "",
@@ -286,7 +286,7 @@ export const COMPANIES = [
   {
     sl: 35,
     name: "Softroniics",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Kerala",
     vacancy:
       "UI/UX Designer, Data Analyst, BDO, Career Advisor, Python Developer, Cyber Security Specialist",
@@ -295,7 +295,7 @@ export const COMPANIES = [
   {
     sl: 36,
     name: "Bridgeon Solutions LLP",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Kerala",
     vacancy: "Placement Coordinator, BDE, Program Coordinator, Video Editor",
     salary: "",
@@ -319,7 +319,7 @@ export const COMPANIES = [
   {
     sl: 39,
     name: "SFO Technologies",
-    branches: ["EE", "EC"],
+    branches: ["EE"],
     location: "Ernakulam",
     vacancy: "",
     salary: "",
@@ -327,7 +327,7 @@ export const COMPANIES = [
   {
     sl: 40,
     name: "MYG",
-    branches: ["EE", "EC", "ME"],
+    branches: ["EE", "ME"],
     location: "Kerala",
     vacancy: "Trainee Engineer / Service Technician",
     salary: "",
@@ -335,7 +335,7 @@ export const COMPANIES = [
   {
     sl: 41,
     name: "Losange Technologies",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Thrissur",
     vacancy:
       "UI/UX Designer, Data Analyst, BDO, Career Advisor, Python Developer, Cyber Security Specialist",
@@ -344,7 +344,7 @@ export const COMPANIES = [
   {
     sl: 42,
     name: "Coremicron Enterprises LLP",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Malappuram",
     vacancy:
       "Arduino Programmer, Python Developer, Flutter Trainee (1 vacancy) – BSc/BCA/BTech/Diploma",
@@ -353,7 +353,7 @@ export const COMPANIES = [
   {
     sl: 43,
     name: "AY Tech",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Ernakulam / Thiruvananthapuram",
     vacancy:
       "Jr. Software Engineer (4), Business Development Executive – 0-2 yrs (3), Full Stack Developer – 2 yrs (4)",
@@ -378,7 +378,7 @@ export const COMPANIES = [
   {
     sl: 46,
     name: "HK School Trenz",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Kerala",
     vacancy: "Trainee Engineer, Jr. Software Engineer (1)",
     salary: "",
@@ -402,7 +402,7 @@ export const COMPANIES = [
   {
     sl: 49,
     name: "Refos Energy Pvt Ltd",
-    branches: ["EE", "EC"],
+    branches: ["EE"],
     location: "Kozhikode",
     vacancy: "Sales Manager",
     salary: "",
@@ -410,7 +410,7 @@ export const COMPANIES = [
   {
     sl: 50,
     name: "Data Cube Software",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Perinthalmanna",
     vacancy: "PHP Developer, .NET Developer, Scrum Master",
     salary: "",
@@ -418,7 +418,7 @@ export const COMPANIES = [
   {
     sl: 51,
     name: "Regional Technology",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Kozhikode",
     vacancy: "Junior Software Developer",
     salary: "",
@@ -426,7 +426,7 @@ export const COMPANIES = [
   {
     sl: 52,
     name: "RISS Technologies",
-    branches: ["CS"],
+    branches: ["CT"],
     location: "Kozhikode",
     vacancy: "Junior Software Developer",
     salary: "",
@@ -434,7 +434,7 @@ export const COMPANIES = [
   {
     sl: 53,
     name: "AN Technologies",
-    branches: ["EC", "EE"],
+    branches: ["EE"],
     location: "Kerala",
     vacancy: "",
     salary: "",
@@ -473,18 +473,30 @@ export const COMPANIES = [
   },
 ];
 
-export const BRANCH_LABELS = {
+export const BRANCH_MAP: Record<string, string> = {
   CT: "Computer",
   CE: "Civil",
-  EEE: "Electrical & Electronics",
+  EE: "Electrical & Eletronics",
   ME: "Mechanical",
   AU: "Automobile",
 };
 
+export const BRANCH_CODES = Array.from(
+  new Set(COMPANIES.flatMap((c) => c.branches)),
+).sort();
+
 export const QUOTES = [
-  '"Your Career Begins Here"',
-  '"Opportunity Meets Preparation"',
-  '"Build Your Future, One Step at a Time"',
-  '"Dream Big. Start Here."',
-  '"Every Expert Was Once a Beginner"',
+  "Your Career Begins Here",
+  "Opportunity Meets Preparation",
+  "Build Your Future, One Step at a Time",
+  "Dream Big. Start Here.",
+  "Every Expert Was Once a Beginner",
 ];
+
+export const BRANCH_COLORS: Record<string, string> = {
+  ME: "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950 dark:text-blue-300 dark:border-blue-800",
+  EE: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800",
+  AU: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800",
+  CE: "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950 dark:text-orange-300 dark:border-orange-800",
+  CT: "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950 dark:text-sky-300 dark:border-sky-800",
+};
