@@ -224,7 +224,7 @@ export default function PlacementPortal() {
                     "bg-muted text-muted-foreground border-border";
                   return (
                     <Tooltip key={code}>
-                      <TooltipTrigger>
+                      <TooltipTrigger asChild>
                         <button
                           onClick={() => toggleBranch(code)}
                           className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-all duration-200 ${

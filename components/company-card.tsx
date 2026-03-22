@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { Separator, Tooltip } from "radix-ui";
-import { TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import { BRANCH_MAP } from "@/app/data";
+import { Branch, BRANCH_MAP, COMPANIES } from "@/app/data";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { MapPin, Users } from "lucide-react";
+import { Separator } from "./ui/separator";
 
 export default function CompanyCard({
   company,
@@ -58,12 +59,13 @@ export default function CompanyCard({
             const isActive = activeBranch === b;
 
             return (
-              <Tooltip key={b} asChild>
+              <Tooltip key={b}>
                 <TooltipTrigger
                   onClick={(e) => {
                     e.stopPropagation();
                     onBranchClick(b);
                   }}
+                  asChild
                   className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-all duration-200 ${
                     isActive
                       ? "bg-primary text-primary-foreground"
