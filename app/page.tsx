@@ -5,18 +5,15 @@ import {
   Briefcase,
   Search,
   X,
-  MapPin,
   Users,
   Filter,
   GraduationCap,
   Calendar,
   Sparkles,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import {
   Tooltip,
   TooltipContent,
@@ -24,18 +21,25 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
+  Branch,
   BRANCH_CODES,
   BRANCH_COLORS,
   BRANCH_MAP,
   COMPANIES,
   QUOTES,
 } from "./data";
+import { ModeToggle } from "../components/mode-toggle";
+import { CompanyDialog } from "../components/company-dialog";
+import CompanyCard from "@/components/company-card";
 import Image from "next/image";
 
 export default function PlacementPortal() {
   const [query, setQuery] = useState("");
-  const [activeBranch, setActiveBranch] = useState<string | null>(null);
+  const [activeBranch, setActiveBranch] = useState<Branch | null>(null);
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [selectedCompany, setSelectedCompany] = useState<
+    (typeof COMPANIES)[0] | null
+  >(null);
 
   useEffect(() => {
     const id = setInterval(
@@ -70,14 +74,13 @@ export default function PlacementPortal() {
     setActiveBranch(null);
   };
 
-  const toggleBranch = (branch: string) => {
+  const toggleBranch = (branch: Branch) => {
     setActiveBranch((prev) => (prev === branch ? null : branch));
     setQuery("");
   };
-
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-linear-to-b from-background via-background to-muted/20">
+      <div className="min-h-screen">
         {/* ── Header ── */}
         <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
@@ -94,13 +97,16 @@ export default function PlacementPortal() {
                 </p>
               </div>
             </div>
-            <Badge
-              variant="outline"
-              className="text-sm font-medium px-3 py-1 bg-linear-to-r from-green-50 to-emerald-50 text-green-700 border-green-200 shadow-sm dark:from-green-950/40 dark:to-emerald-950/40 dark:text-green-400 dark:border-green-800"
-            >
-              <Calendar className="h-3 w-3 mr-1" />
-              Active Now
-            </Badge>
+            <div className="flex items-center gap-6">
+              <ModeToggle />
+              <Badge
+                variant="outline"
+                className="text-sm font-medium px-3 py-1 bg-linear-to-r from-green-50 to-emerald-50 text-green-700 border-green-200 shadow-sm dark:from-green-950/40 dark:to-emerald-950/40 dark:text-green-400 dark:border-green-800"
+              >
+                <Calendar className="h-3 w-3 mr-1" />
+                Active Now
+              </Badge>
+            </div>
           </div>
         </header>
 
@@ -218,7 +224,7 @@ export default function PlacementPortal() {
                     "bg-muted text-muted-foreground border-border";
                   return (
                     <Tooltip key={code}>
-                      <TooltipTrigger asChild>
+                      <TooltipTrigger>
                         <button
                           onClick={() => toggleBranch(code)}
                           className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-all duration-200 ${
@@ -288,8 +294,14 @@ export default function PlacementPortal() {
           {/* Grid */}
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed bg-muted/20 py-16 text-center">
-              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-                <Briefcase className="h-7 w-7 text-muted-foreground" />
+              <div className="mb-4 flex h-32 w-32 items-center justify-center rounded-full bg-muted p-4">
+                <Image
+                  src="/not-found.svg"
+                  alt="not found"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                />
               </div>
               <p className="text-lg font-semibold">No companies found</p>
               <p className="mt-1 text-sm text-muted-foreground">
@@ -312,6 +324,7 @@ export default function PlacementPortal() {
                   company={company}
                   activeBranch={activeBranch}
                   onBranchClick={toggleBranch}
+                  onClick={() => setSelectedCompany(company)}
                 />
               ))}
             </div>
@@ -330,106 +343,16 @@ export default function PlacementPortal() {
             </p>
           </div>
         </footer>
+        {selectedCompany && (
+          <CompanyDialog
+            open={!!selectedCompany}
+            company={selectedCompany}
+            onOpenChange={(open) => {
+              if (!open) setSelectedCompany(null);
+            }}
+          />
+        )}
       </div>
     </TooltipProvider>
-  );
-}
-
-function CompanyCard({
-  company,
-  activeBranch,
-  onBranchClick,
-}: {
-  company: (typeof COMPANIES)[0];
-  activeBranch: string | null;
-  onBranchClick: (branch: string) => void;
-}) {
-  return (
-    <Card className="group relative flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm">
-      {/* Gradient border effect on hover */}
-      <div className="absolute inset-0 bg-linear-to-r from-primary/0 via-primary/0 to-primary/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:from-primary/5 group-hover:via-primary/10 group-hover:to-primary/5 pointer-events-none" />
-
-      <CardHeader className="pb-3">
-        <div className="flex items-start gap-3">
-          {/* Company Logo */}
-          <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-border/50 bg-white shadow-sm">
-            <Image
-              src={"/building.svg"}
-              alt={`${company.name} logo`}
-              className="h-full w-full object-contain p-1.5"
-              width={50}
-              height={50}
-            />
-          </div>
-
-          {/* Company Name and Salary */}
-          <div className="flex-1">
-            <CardTitle className="text-lg font-semibold leading-tight tracking-tight line-clamp-2">
-              {company.name}
-            </CardTitle>
-            {company.salary && (
-              <Badge className="mt-1.5 inline-flex bg-linear-to-r from-green-50 to-emerald-50 text-green-700 border border-green-200 dark:from-green-950/60 dark:to-emerald-950/60 dark:text-green-300 dark:border-green-800 text-xs font-semibold px-2.5 py-1">
-                💰 {company.salary}
-              </Badge>
-            )}
-          </div>
-        </div>
-      </CardHeader>
-
-      <CardContent className="flex flex-1 flex-col gap-3 pb-5">
-        {/* Branch badges */}
-        <div className="flex flex-wrap gap-1.5">
-          {company.branches.map((b) => (
-            <Tooltip key={b}>
-              <TooltipTrigger asChild>
-                <button
-                  onClick={() => onBranchClick(b)}
-                  className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium transition-all duration-200 ${
-                    BRANCH_COLORS[b] ??
-                    "bg-muted text-muted-foreground border-border"
-                  } ${
-                    activeBranch === b
-                      ? "ring-2 ring-offset-1 ring-primary/50 scale-105"
-                      : "hover:scale-105 hover:shadow-sm"
-                  }`}
-                >
-                  {b}
-                </button>
-              </TooltipTrigger>
-              <TooltipContent side="top" className="text-sm">
-                <p>{BRANCH_MAP[b] ?? b}</p>
-              </TooltipContent>
-            </Tooltip>
-          ))}
-        </div>
-
-        <Separator className="my-1" />
-
-        {/* Location */}
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <MapPin className="h-3.5 w-3.5 shrink-0" />
-          <span className="truncate">{company.location}</span>
-        </div>
-
-        {/* Vacancy */}
-        {company.vacancy && company.vacancy !== "—" && (
-          <div className="flex items-start gap-2 text-sm text-muted-foreground">
-            <Users className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-            <span className="line-clamp-2 text-sm">{company.vacancy}</span>
-          </div>
-        )}
-
-        {/* Footer with serial number and view details */}
-        <div className="mt-4 flex items-center justify-between pt-1 border-t border-border/40">
-          <span className="text-[11px] text-muted-foreground/40 font-mono tracking-wide">
-            #{String(company.sl).padStart(2, "0")}
-          </span>
-          {/* <span className="inline-flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:gap-1.5">
-            View details
-            <ChevronRight className="h-3.5 w-3.5" />
-          </span> */}
-        </div>
-      </CardContent>
-    </Card>
   );
 }
