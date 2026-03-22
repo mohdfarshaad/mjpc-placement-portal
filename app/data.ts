@@ -1,4 +1,15 @@
-export const COMPANIES = [
+export type Branch = "CT" | "EE" | "ME" | "AU" | "CE";
+
+export interface Company {
+  sl: number;
+  name: string;
+  branches: Branch[];
+  location: string;
+  vacancy: string;
+  salary: string;
+}
+
+export const COMPANIES: Company[] = [
   {
     sl: 1,
     name: "TATA Advanced Systems (Aerospace)",
@@ -493,7 +504,7 @@ export const QUOTES = [
   "Every Expert Was Once a Beginner",
 ];
 
-export const BRANCH_COLORS: Record<string, string> = {
+export const BRANCH_COLORS: Record<Branch, string> = {
   ME: "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950 dark:text-blue-300 dark:border-blue-800",
   EE: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800",
   AU: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800",
