@@ -83,28 +83,33 @@ export default function PlacementPortal() {
       <div className="min-h-screen">
         {/* ── Header ── */}
         <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
-            <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-br from-primary to-primary/80 shadow-lg">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 md:px-6">
+            {/* Left */}
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-primary to-primary/80 shadow-lg">
                 <Briefcase className="h-4.5 w-4.5 text-primary-foreground" />
               </div>
-              <div>
-                <p className="text-base font-semibold leading-tight tracking-tight">
+
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold leading-tight tracking-tight sm:text-base">
                   Majlis Placement Drive
                 </p>
-                <p className="text-xs text-muted-foreground">
+                <p className="truncate text-xs text-muted-foreground">
                   Campus Recruitment Portal 2026
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-6">
+
+            {/* Right */}
+            <div className="flex items-center gap-2 sm:gap-4">
               <ModeToggle />
+
               <Badge
                 variant="outline"
-                className="text-sm font-medium px-3 py-1 bg-linear-to-r from-green-50 to-emerald-50 text-green-700 border-green-200 shadow-sm dark:from-green-950/40 dark:to-emerald-950/40 dark:text-green-400 dark:border-green-800"
+                className="hidden sm:inline-flex text-xs sm:text-sm font-medium px-2 sm:px-3 py-1 bg-linear-to-r from-green-50 to-emerald-50 text-green-700 border-green-200 shadow-sm dark:from-green-950/40 dark:to-emerald-950/40 dark:text-green-400 dark:border-green-800"
               >
                 <Calendar className="h-3 w-3 mr-1" />
-                Active Now
+                Active
               </Badge>
             </div>
           </div>
@@ -331,16 +336,30 @@ export default function PlacementPortal() {
           )}
         </main>
 
-        {/* ── Footer ── */}
-        <footer className="mt-8 border-t py-8 text-center text-sm text-muted-foreground">
-          <div className="mx-auto max-w-7xl px-4">
-            <p>
-              © 2026{" "}
-              <span className="font-semibold text-foreground">
+        <footer className="border-t bg-muted/20">
+          <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between">
+            {/* Left */}
+            <div className="flex items-center gap-2 justify-center sm:justify-start">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
+                <Briefcase className="h-4 w-4 text-primary" />
+              </div>
+              <span className="text-sm font-medium text-foreground">
                 Majlis Placement Drive
-              </span>{" "}
-              — Empowering campus talent for tomorrow&qoute s industry.
+              </span>
+            </div>
+
+            {/* Center */}
+            <p className="text-xs text-muted-foreground text-center sm:text-left">
+              © 2026 Majlis Polytechnic — Empowering campus talent for
+              tomorrow’s industry.
             </p>
+
+            {/* Right */}
+            <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground sm:justify-end">
+              <span>{COMPANIES.length}+ Companies</span>
+              <span>•</span>
+              <span>{BRANCH_CODES.length} Branches</span>
+            </div>
           </div>
         </footer>
         {selectedCompany && (
