@@ -1,4 +1,4 @@
-export type Branch = "CT" | "EE" | "ME" | "AU" | "CE";
+export type Branch = "CT" | "EE" | "ME" | "AU" | "CE" ;
 
 export interface Company {
   sl: number;
@@ -6,7 +6,9 @@ export interface Company {
   branches: Branch[];
   location: string;
   vacancy: string;
-  salary: string;
+  image: string;
+  floor: string;
+  room: string;
 }
 
 export const COMPANIES: Company[] = [
@@ -16,15 +18,19 @@ export const COMPANIES: Company[] = [
     branches: ["ME", "EE", "AU"],
     location: "Bangalore",
     vacancy: "Trainee Engineer (Direct)",
-    salary: "",
+    image: "/company-logos/sl1.jpg",
+    floor: "2nd",
+    room: "ME Department"
   },
   {
     sl: 2,
     name: "Schneider Electricals",
-    branches: ["EE"],
+    branches: ["EE",],
     location: "Bangalore, Chennai",
     vacancy: "Trainee Engineer (Direct / NAPS)",
-    salary: "",
+    image: "/company-logos/sl2.jpg",
+    floor: "1st",
+    room: "S1 CT (F29)"
   },
   {
     sl: 3,
@@ -32,7 +38,9 @@ export const COMPANIES: Company[] = [
     branches: ["ME"],
     location: "Abu Dhabi, UAE",
     vacancy: "Trainee Engineer",
-    salary: "",
+    image: "/company-logos/sl3.jpg",
+    floor: "1st",
+    room: "S1 CT (F29)"
   },
   {
     sl: 4,
@@ -40,7 +48,9 @@ export const COMPANIES: Company[] = [
     branches: ["ME", "EE"],
     location: "Mura Port, Gujarat",
     vacancy: "200 positions",
-    salary: "",
+    image: "/company-logos/sl4.jpg",
+    floor: "1st",
+    room: "Board Room"
   },
   {
     sl: 5,
@@ -48,25 +58,29 @@ export const COMPANIES: Company[] = [
     branches: ["EE"],
     location: "All over Kerala",
     vacancy: "50 positions",
-    salary: "",
+    image: "/company-logos/sl5.jpg",
+    floor: "2nd",
+    room: "Drawing hall 2 (3rd Door)"
   },
   {
     sl: 6,
     name: "Popular Hyundai",
     branches: ["AU"],
     location: "Kerala",
-    vacancy:
-      "Sales Consultant, Technician, Chief Technician, Service Advisor, Team Leader, Driver",
-    salary: "",
+    vacancy: "Sales Consultant, Technician, Service Advisor, etc.",
+    image: "/company-logos/sl6.jpg",
+    floor: "2nd",
+    room: "S47 (S4 EEE)"
   },
   {
     sl: 7,
     name: "AM Motors",
     branches: ["AU"],
     location: "Kerala",
-    vacancy:
-      "Service Advisor Trainee, Bodyshop Advisor Trainee, Mechanic Trainee",
-    salary: "",
+    vacancy: "Service Advisor/Mechanic Trainees",
+    image: "/company-logos/sl7.jpg",
+    floor: "2nd",
+    room: "S46 (S4 ME)"
   },
   {
     sl: 8,
@@ -74,7 +88,9 @@ export const COMPANIES: Company[] = [
     branches: ["ME", "AU"],
     location: "Chennai",
     vacancy: "Shift In-Charge",
-    salary: "₹18,500 – ₹20,2500",
+    image: "/company-logos/sl8.jpg",
+    floor: "2nd",
+    room: "Drawing hall 2 (2nd Door)"
   },
   {
     sl: 9,
@@ -82,15 +98,19 @@ export const COMPANIES: Company[] = [
     branches: ["EE", "ME"],
     location: "Chennai",
     vacancy: "Shift In-Charge",
-    salary: "₹19,000",
+    image: "/company-logos/sl9.jpg",
+    floor: "1st",
+    room: "S1 AU (F28)"
   },
   {
     sl: 10,
     name: "ZF Commercial Vehicle Control Systems",
     branches: ["EE", "ME"],
     location: "Chennai",
-    vacancy: "",
-    salary: "",
+    vacancy: "Trainee Engineer",
+    image: "/company-logos/sl10.jpg",
+    floor: "1st",
+    room: "S1 EEE (F27)"
   },
   {
     sl: 11,
@@ -98,7 +118,9 @@ export const COMPANIES: Company[] = [
     branches: ["ME", "AU"],
     location: "Chennai",
     vacancy: "Jr. Engineer",
-    salary: "",
+    image: "/company-logos/sl11.jpg",
+    floor: "2nd",
+    room: "CT Department"
   },
   {
     sl: 12,
@@ -106,15 +128,19 @@ export const COMPANIES: Company[] = [
     branches: ["CE"],
     location: "Kerala",
     vacancy: "5+",
-    salary: "",
+    image: "/company-logos/sl12.jpg",
+    floor: "Ground",
+    room: "Concrete Lab"
   },
   {
     sl: 13,
     name: "Icher Mobile Technologies Pvt Ltd",
-    branches: ["EE"],
+    branches: ["EE", "CE"],
     location: "Kottakkal",
     vacancy: "10 positions",
-    salary: "",
+    image: "/company-logos/sl13.jpg",
+    floor: "1st",
+    room: "S1 ME (F26)"
   },
   {
     sl: 14,
@@ -122,25 +148,19 @@ export const COMPANIES: Company[] = [
     branches: ["AU"],
     location: "All over Kerala",
     vacancy: "10 positions",
-    salary: "",
+    image: "/company-logos/sl14.jpg",
+    floor: "2nd",
+    room: "S42 (S6 CT)"
   },
   {
     sl: 15,
     name: "Indus Motors LCV (P) Ltd",
     branches: ["AU"],
     location: "All over Kerala",
-    vacancy:
-      "CRE Female (4), Accounts Asst (2), Technician Trainees (10), Sr. Technician (5), Service Advisor Trainees (8)",
-    salary: "",
-  },
-  {
-    sl: 16,
-    name: "KIMS Group of Institutions",
-    branches: ["CT"],
-    location: "Valanchery",
-    vacancy:
-      "Telecallers, Office Staff, Faculty – BCA, Dialysis, Medical Imaging, Digital Marketing",
-    salary: "",
+    vacancy: "Technicians, Advisors, CRE",
+    image: "/company-logos/sl15.jpg",
+    floor: "2nd",
+    room: "S48 (S4 AU)"
   },
   {
     sl: 17,
@@ -148,82 +168,99 @@ export const COMPANIES: Company[] = [
     branches: ["CE"],
     location: "Malappuram / Kozhikode",
     vacancy: "Trainee Engineers Civil – 2 Nos",
-    salary: "",
+    image: "/company-logos/sl17.jpg",
+    floor: "Ground",
+    room: "G18 Computer Lab"
   },
   {
     sl: 18,
     name: "HL Klemove India Pvt Ltd",
     branches: ["ME", "AU"],
     location: "Chennai",
-    vacancy: "",
-    salary: "₹17,500",
+    vacancy: "Trainee",
+    image: "/company-logos/sl18.jpg",
+    floor: "2nd",
+    room: "S41 (S6 EEE)"
   },
   {
     sl: 19,
     name: "WIPRO Infrastructure Engineering",
     branches: ["EE", "ME"],
     location: "Chennai",
-    vacancy: "",
-    salary: "₹18,000",
+    vacancy: "Trainee Engineer",
+    image: "/company-logos/s19.jpg",
+    floor: "1st",
+    room: "S1 CE (F25)"
   },
   {
     sl: 20,
     name: "DAMSURE Expert Build Care LLP",
     branches: ["CE"],
     location: "Malappuram / Kozhikode / Kannur",
-    vacancy: "Project Executive Male, Freshers/Up to 1 yr exp",
-    salary: "₹12,000 – ₹18,000",
+    vacancy: "Project Executive Male",
+    image: "/company-logos/sl20.jpg",
+    floor: "Ground",
+    room: "Seminar Hall door 1"
   },
   {
     sl: 21,
     name: "Sysbreeze Technologies Pvt Ltd",
     branches: ["CT"],
     location: "Kerala",
-    vacancy:
-      "Python Developer, Data Science Intern, MERN Stack Developer (0–1 yr exp)",
-    salary: "",
+    vacancy: "Python, Data Science, MERN Developers",
+    image: "/company-logos/sl21.jpg",
+    floor: "Ground",
+    room: "Fab Lab"
   },
   {
     sl: 22,
     name: "Violin Technologies Pvt Ltd",
-    branches: ["EE"],
+    branches: ["EE", "CT"],
     location: "Chennai",
-    vacancy: "Production Engineer / Trainee Engineer",
-    salary: "",
+    vacancy: "Production / Trainee Engineer",
+    image: "/company-logos/sl22.jpg",
+    floor: "Ground",
+    room: "G04 Physics Lab"
   },
   {
     sl: 23,
     name: "CY Myutes Anand Pvt Ltd",
     branches: ["ME"],
     location: "Chennai",
-    vacancy: "Production Engineer / Trainee Engineer",
-    salary: "",
+    vacancy: "Production / Trainee Engineer",
+    image: "/company-logos/sl23.jpg",
+    floor: "2nd",
+    room: "S40 (S6 AU)"
   },
   {
     sl: 24,
     name: "Royal Enfield – Mass Wheels Pvt Ltd",
     branches: ["AU"],
     location: "Malappuram",
-    vacancy:
-      "Technician Trainee (Valanchery 2, Edappal 6), Technician (Edappal 3, Vannery 2), Sales Executive, Service Marketing, Accounts, Team Leader",
-    salary: "",
+    vacancy: "Technicians, Sales, Accounts",
+    image: "/company-logos/sl24.jpg",
+    floor: "2nd",
+    room: "S39 (S6 ME)"
   },
   {
     sl: 25,
     name: "Popular Vehicles and Services Ltd",
     branches: ["AU"],
     location: "All over Kerala",
-    vacancy: "Service Advisor, Mechanic (ITI), Service Engineer (B.Tech)",
-    salary: "",
+    vacancy: "Advisor, Mechanic, Engineer",
+    image: "/company-logos/sl25.jpg",
+    floor: "2nd",
+    room: "S38 (S6 CE)"
   },
   {
     sl: 26,
     name: "AVT Natural Products Ltd",
     branches: ["ME", "EE"],
     location: "Ernakulam",
-    vacancy:
-      "Machine Operation Trainees – Fitter, Mechanical, Machinist; Electronics background also considered",
-    salary: "",
+    vacancy: "Machine Operation Trainees",
+    image: "/company-logos/sl26.jpg",
+    floor: "2nd",
+    room: "Drawing Hall 1 (1st Door)"
   },
   {
     sl: 27,
@@ -231,51 +268,59 @@ export const COMPANIES: Company[] = [
     branches: ["CE"],
     location: "Kozhikode",
     vacancy: "10 positions",
-    salary: "",
+    image: "/company-logos/sl27.jpg",
+    floor: "Ground",
+    room: "Seminar Hall door 2"
   },
   {
     sl: 28,
     name: "Phoenix Cars India Pvt Ltd",
     branches: ["AU", "ME"],
     location: "Kerala",
-    vacancy:
-      "Technician (2 yr exp), Job Controller, Sales Consultant, Service Manager, CRE – Sales & Service (Freshers can apply)",
-    salary: "",
+    vacancy: "Technician, Sales, Manager",
+    image: "/company-logos/sl28.jpg",
+    floor: "2nd",
+    room: "EEE Department"
   },
   {
     sl: 29,
-    name: "Volvo Eicher Commercial Vehicle – PSN Automotive",
+    name: "Volvo Eicher Commercial Vehicle – PSN",
     branches: ["AU", "ME"],
     location: "Kerala",
-    vacancy: "Service Advisor Trainee, Warranty Trainee, Spare Parts Assistant",
-    salary: "",
+    vacancy: "Advisor, Warranty Trainee",
+    image: "/company-logos/sl29.jpg",
+    floor: "2nd",
+    room: "S45"
   },
   {
     sl: 30,
     name: "UNIRIDE Honda",
     branches: ["AU", "ME"],
     location: "Kerala",
-    vacancy:
-      "Sales Executive, Mechanic, Mechanic Trainee, Spare Parts Trainee, PDI Fitter, Service Advisor, Spare Parts Warranty Asst",
-    salary: "",
+    vacancy: "Sales, Mechanic, PDI Fitter",
+    image: "/company-logos/sl30.jpg",
+    floor: "2nd",
+    room: "Drawing Hall 1 (2nd Door)"
   },
   {
     sl: 31,
-    name: "Autobahn Trucking Corporation Pvt Ltd",
+    name: "Autobahn Trucking Corporation",
     branches: ["AU", "ME"],
     location: "Kerala",
-    vacancy:
-      "Graduate Engineer Trainee, Technician Trainee, Parts Trainee, Parts Executive, Service Advisor, Sales Executive",
-    salary: "",
+    vacancy: "GET, Technician, Parts Trainee",
+    image: "/company-logos/sl31.jpg",
+    floor: "2nd",
+    room: "Civil Department"
   },
   {
     sl: 32,
-    name: "Phoenix Cars India – Volkswagen Malappuram",
+    name: "Phoenix Cars India – Volkswagen",
     branches: ["AU", "ME"],
     location: "Malappuram",
-    vacancy:
-      "Technician, Service Advisor, Customer Relation Executives, Sales Executives",
-    salary: "",
+    vacancy: "Technician, Advisor, Sales",
+    image: "/company-logos/sl32.jpg",
+    floor: "2nd",
+    room: "Automobile Department"
   },
   {
     sl: 33,
@@ -283,33 +328,39 @@ export const COMPANIES: Company[] = [
     branches: ["EE"],
     location: "All over Kerala",
     vacancy: "15 positions",
-    salary: "",
+    image: "/company-logos/sl33.jpg",
+    floor: "Ground",
+    room: "G03 Survey Lab"
   },
   {
     sl: 34,
     name: "Parisons Group of Companies",
     branches: ["ME", "EE"],
     location: "Kerala",
-    vacancy:
-      "Electrician (4), Electrical Engineer (1), Supervisor (4), Fitter (3), Machine Operator (6)",
-    salary: "",
+    vacancy: "Electrician, Engineer, Supervisor",
+    image: "/company-logos/sl34.jpg",
+    floor: "2nd",
+    room: "Drawing Hall 1 (3rd Door)"
   },
   {
     sl: 35,
     name: "Softroniics",
     branches: ["CT"],
     location: "Kerala",
-    vacancy:
-      "UI/UX Designer, Data Analyst, BDO, Career Advisor, Python Developer, Cyber Security Specialist",
-    salary: "",
+    vacancy: "UI/UX, Data, Python Dev",
+    image: "/company-logos/sl35.jpg",
+    floor: "Ground",
+    room: "G08 EM Lab"
   },
   {
     sl: 36,
     name: "Bridgeon Solutions LLP",
     branches: ["CT"],
     location: "Kerala",
-    vacancy: "Placement Coordinator, BDE, Program Coordinator, Video Editor",
-    salary: "",
+    vacancy: "Coordinators, BDE, Video Editor",
+    image: "/company-logos/sl36.jpg",
+    floor: "Ground",
+    room: "G07 EL Workshop"
   },
   {
     sl: 37,
@@ -317,7 +368,9 @@ export const COMPANIES: Company[] = [
     branches: ["ME", "EE"],
     location: "Ernakulam",
     vacancy: "Operator – Production",
-    salary: "",
+    image: "/company-logos/sl37.jpg",
+    floor: "1st",
+    room: "RAC LAB"
   },
   {
     sl: 38,
@@ -325,184 +378,204 @@ export const COMPANIES: Company[] = [
     branches: ["ME"],
     location: "Coimbatore",
     vacancy: "Operator – Production",
-    salary: "",
+    image: "/company-logos/sl38.jpg",
+    floor: "2nd",
+    room: "S35 (S4 CT)"
   },
   {
     sl: 39,
     name: "SFO Technologies",
     branches: ["EE"],
     location: "Ernakulam",
-    vacancy: "",
-    salary: "",
-  },
-  {
-    sl: 40,
-    name: "MYG",
-    branches: ["EE", "ME"],
-    location: "Kerala",
-    vacancy: "Trainee Engineer / Service Technician",
-    salary: "",
-  },
-  {
-    sl: 41,
-    name: "Losange Technologies",
-    branches: ["CT"],
-    location: "Thrissur",
-    vacancy:
-      "UI/UX Designer, Data Analyst, BDO, Career Advisor, Python Developer, Cyber Security Specialist",
-    salary: "",
+    vacancy: "Trainee",
+    image: "/company-logos/sl39.jpg",
+    floor: "Ground",
+    room: "G02 Environmental Engineering Lab"
   },
   {
     sl: 42,
-    name: "Coremicron Enterprises LLP",
+    name: "AY Tech",
     branches: ["CT"],
-    location: "Malappuram",
-    vacancy:
-      "Arduino Programmer, Python Developer, Flutter Trainee (1 vacancy) – BSc/BCA/BTech/Diploma",
-    salary: "",
+    location: "EKM / TVM",
+    vacancy: "Software Engineer, BDE",
+    image: "/company-logos/sl42.jpg",
+    floor: "Ground",
+    room: "G05 Basic Electrical Workshop"
   },
   {
     sl: 43,
-    name: "AY Tech",
-    branches: ["CT"],
-    location: "Ernakulam / Thiruvananthapuram",
-    vacancy:
-      "Jr. Software Engineer (4), Business Development Executive – 0-2 yrs (3), Full Stack Developer – 2 yrs (4)",
-    salary: "",
-  },
-  {
-    sl: 44,
     name: "Frametech Steel Structures Pvt Ltd",
     branches: ["CE"],
     location: "Malappuram",
-    vacancy: "Site Engineer (2), Draughtsman (2)",
-    salary: "",
+    vacancy: "Site Engineer, Draughtsman",
+    image: "/company-logos/sl43.jpg",
+    floor: "Ground",
+    room: "G14 Hardware Lab"
   },
   {
-    sl: 45,
+    sl: 44,
     name: "Asty Constructions LLP",
     branches: ["CE"],
     location: "Kerala",
-    vacancy: "Site Engineer, Site Supervisor",
-    salary: "",
+    vacancy: "Site Engineer, Supervisor",
+    image: "/company-logos/sl44.jpg",
+    floor: "Ground",
+    room: "G14 TMP Lab"
   },
   {
-    sl: 46,
+    sl: 45,
     name: "HK School Trenz",
     branches: ["CT"],
     location: "Kerala",
-    vacancy: "Trainee Engineer, Jr. Software Engineer (1)",
-    salary: "",
+    vacancy: "Trainee Engineer",
+    image: "/company-logos/sl45.jpg",
+    floor: "Ground",
+    room: "G06 NSS Room"
   },
   {
-    sl: 47,
+    sl: 46,
     name: "Acmmo Architects",
     branches: ["CE"],
     location: "Kerala",
-    vacancy: "Site Supervisor, CAD Designer",
-    salary: "",
+    vacancy: "Site Supervisor, Designer",
+    image: "/company-logos/sl46.jpg",
+    floor: "Ground",
+    room: "G13 VT Lab"
   },
   {
-    sl: 48,
+    sl: 47,
     name: "Eminent Builders & Interiors",
     branches: ["CE"],
     location: "Kerala",
     vacancy: "Site Engineer, Quantity Surveyor",
-    salary: "",
+    image: "/company-logos/sl47.jpg",
+    floor: "Ground",
+    room: "Common computer lab"
   },
   {
-    sl: 49,
+    sl: 48,
     name: "Refos Energy Pvt Ltd",
     branches: ["EE"],
     location: "Kozhikode",
     vacancy: "Sales Manager",
-    salary: "",
+    image: "/company-logos/sl48.jpg",
+    floor: "Ground",
+    room: "G01"
   },
   {
     sl: 50,
-    name: "Data Cube Software",
-    branches: ["CT"],
-    location: "Perinthalmanna",
-    vacancy: "PHP Developer, .NET Developer, Scrum Master",
-    salary: "",
-  },
-  {
-    sl: 51,
     name: "Regional Technology",
     branches: ["CT"],
     location: "Kozhikode",
     vacancy: "Junior Software Developer",
-    salary: "",
+    image: "/company-logos/sl50.jpg",
+    floor: "1st",
+    room: "Security Room"
   },
   {
     sl: 52,
-    name: "RISS Technologies",
-    branches: ["CT"],
-    location: "Kozhikode",
-    vacancy: "Junior Software Developer",
-    salary: "",
-  },
-  {
-    sl: 53,
     name: "AN Technologies",
     branches: ["EE"],
     location: "Kerala",
-    vacancy: "",
-    salary: "",
+    vacancy: "Trainee",
+    image: "/company-logos/sl52.jpg",
+    floor: "Ground",
+    room: "MT lab"
   },
   {
-    sl: 54,
+    sl: 53,
     name: "Avon Engineering",
     branches: ["ME"],
     location: "Mysore",
     vacancy: "Production Operator",
-    salary: "",
+    image: "/company-logos/sl53.jpg",
+    floor: "Ground",
+    room: "General Department"
   },
   {
-    sl: 55,
+    sl: 54,
     name: "AJ Engineering",
     branches: ["ME", "AU"],
     location: "Mysore",
     vacancy: "Production Operator",
-    salary: "",
+    image: "/company-logos/sl54.jpg",
+    floor: "Ground",
+    room: "General Department"
   },
   {
-    sl: 56,
+    sl: 55,
     name: "KM Tractors",
     branches: ["ME", "AU"],
     location: "Kerala",
     vacancy: "Service Engineer",
-    salary: "",
+    image: "/company-logos/sl55.jpg",
+    floor: "2nd",
+    room: "Drawing hall 2 (1st Door)"
   },
   {
-    sl: 57,
+    sl: 56,
     name: "CODE Developers",
     branches: ["CE"],
     location: "Kerala",
     vacancy: "4 Site Engineers",
-    salary: "",
+    image: "/company-logos/sl56.jpg",
+    floor: "Ground",
+    room: "CAD Lab"
   },
+  {
+    sl: 57,
+    name: "Adani ACC Cement",
+    branches: ["CE"],
+    location: "Kerala",
+    vacancy: "Trainee",
+    image: "/company-logos/sl57.jpg",
+    floor: "Ground",
+    room: "Library Room 2"
+  },
+  {
+    sl: 58,
+    name: "IluZia Lab",
+    branches: ["CT"],
+    location: "KOZHIKODE",
+    vacancy: "UNITY DEVOLOPER INTERN,VIDEO EDITOR,SALES AND MARKETING, EXECUTIVE,OFFICE ADMIN",
+    image: "/company-logos/sl58.jpg",
+   floor: "2nd",
+  room: "S59 (Near CT Dpt)"
+  }
 ];
 
 export const BRANCH_MAP: Record<string, string> = {
+
   CT: "Computer",
+
   CE: "Civil",
+
   EE: "Electrical & Eletronics",
+
   ME: "Mechanical",
+
   AU: "Automobile",
+
 };
 
+
+
 export const BRANCH_CODES = Array.from(
+
   new Set(COMPANIES.flatMap((c) => c.branches)),
+
 ).sort();
 
+
+
 export const QUOTES = [
+  "MAJLIS MEGA PLACEMENT DRIVE 2026",
+  "1800+ Vacancies. One Platform.",
   "Your Career Begins Here",
-  "Opportunity Meets Preparation",
   "Build Your Future, One Step at a Time",
-  "Dream Big. Start Here.",
-  "Every Expert Was Once a Beginner",
 ];
+
+
 
 export const BRANCH_COLORS: Record<Branch, string> = {
   ME: "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950 dark:text-blue-300 dark:border-blue-800",

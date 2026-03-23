@@ -20,6 +20,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mjpc Placements Drive 2026",
   description: "Majlis Polytechnic Placements Drive 2026",
+  icons:{
+    icon:"/mjpc-logo.jpeg"
+  }
 };
 
 export default function RootLayout({
@@ -39,6 +42,7 @@ export default function RootLayout({
         "font-sans",
         inter.variable,
       )}
+      
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider

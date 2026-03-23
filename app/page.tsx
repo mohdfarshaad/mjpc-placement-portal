@@ -10,6 +10,11 @@ import {
   GraduationCap,
   Calendar,
   Sparkles,
+  Building2,
+  MapPin,
+  Banknote,
+  MessageCircle,
+  FileEdit,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -32,6 +37,7 @@ import { ModeToggle } from "../components/mode-toggle";
 import { CompanyDialog } from "../components/company-dialog";
 import CompanyCard from "@/components/company-card";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function PlacementPortal() {
   const [query, setQuery] = useState("");
@@ -50,22 +56,20 @@ export default function PlacementPortal() {
   }, []);
 
   const filtered = useMemo(() => {
-    const q = query.toLowerCase().trim();
-    return COMPANIES.filter((c) => {
-      const matchesQuery =
-        !q ||
-        c.name.toLowerCase().includes(q) ||
-        c.branches.some(
-          (b) =>
-            BRANCH_MAP[b]?.toLowerCase().includes(q) ||
-            b.toLowerCase().includes(q),
-        ) ||
-        c.vacancy.toLowerCase().includes(q) ||
-        c.location.toLowerCase().includes(q);
-      const matchesBranch = !activeBranch || c.branches.includes(activeBranch);
-      return matchesQuery && matchesBranch;
-    });
-  }, [query, activeBranch]);
+  const q = query.toLowerCase().trim();
+  return COMPANIES.filter((c) => {
+    const matchesQuery =
+      !q ||
+      c.name.toLowerCase().includes(q) ||
+      c.room.toLowerCase().includes(q) || 
+      c.floor.toLowerCase().includes(q) || 
+      c.branches.some(b => b.toLowerCase().includes(q)) ||
+      c.location.toLowerCase().includes(q);
+    
+    const matchesBranch = !activeBranch || c.branches.includes(activeBranch);
+    return matchesQuery && matchesBranch;
+  });
+}, [query, activeBranch]);
 
   const hasFilters = query.trim() !== "" || activeBranch !== null;
 
@@ -86,10 +90,15 @@ export default function PlacementPortal() {
           <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 md:px-6">
             {/* Left */}
             <div className="flex items-center gap-3 min-w-0">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-primary to-primary/80 shadow-lg">
-                <Briefcase className="h-4.5 w-4.5 text-primary-foreground" />
-              </div>
-
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 shadow-lg overflow-hidden border border-border/50">
+  <Image 
+    src="/mjpc-logo.jpeg" 
+    alt="logo" 
+    height={40} 
+    width={40} 
+    className="h-full w-full object-cover" 
+  />
+</div>
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold leading-tight tracking-tight sm:text-base">
                   Majlis Placement Drive
@@ -116,79 +125,90 @@ export default function PlacementPortal() {
         </header>
 
         {/* ── Hero Section ── */}
-        <section className="relative overflow-hidden border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-12 text-center md:py-16">
-          {/* Animated background decoration */}
-          <div className="absolute inset-0 -z-10 overflow-hidden">
-            <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
-            <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
-          </div>
+      <section className="relative overflow-hidden border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-12 text-center md:py-16">
+  {/* Animated background decoration */}
+  <div className="absolute inset-0 -z-10 overflow-hidden">
+    <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
+    <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
+  </div>
 
-          <div className="mx-auto max-w-4xl">
-            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/15 border-none px-3 py-1 text-xs font-semibold tracking-wide">
-              <Sparkles className="h-3 w-3 mr-1" />
-              Recruitment Season 2026
-            </Badge>
-            <h1 className="mb-5 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-linear-to-r from-foreground via-foreground to-primary/70 bg-clip-text text-transparent animate-in fade-in slide-in-from-bottom-4 duration-700">
-              {QUOTES[quoteIndex]}
-            </h1>
-            <p className="mx-auto max-w-2xl text-base text-muted-foreground md:text-lg">
-              Discover your dream opportunity from{" "}
-              <strong className="text-foreground font-semibold">
-                {COMPANIES.length}+
-              </strong>{" "}
-              top companies actively recruiting from campus. Filter by branch,
-              search by name, and take the next step in your career journey.
-            </p>
+  <div className="mx-auto max-w-4xl">
+    <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/15 border-none px-3 py-1 text-xs font-semibold tracking-wide">
+      <Sparkles className="h-3 w-3 mr-1" />
+      Recruitment Season 2026
+    </Badge>
+    
+    <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-linear-to-r from-foreground via-foreground to-primary/70 bg-clip-text text-transparent animate-in fade-in slide-in-from-bottom-4 duration-700">
+      {QUOTES[quoteIndex]}
+    </h1>
 
-            {/* Stats row */}
-            {/* <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-12">
-              {[
-                {
-                  icon: Building2,
-                  label: "Companies",
-                  value: COMPANIES.length,
-                  color: "from-blue-500/10 to-blue-500/5",
-                },
-                {
-                  icon: MapPin,
-                  label: "Locations",
-                  value: new Set(
-                    COMPANIES.flatMap((c) => c.location.split(", ")),
-                  ).size,
-                  color: "from-emerald-500/10 to-emerald-500/5",
-                },
-                {
-                  icon: GraduationCap,
-                  label: "Branches",
-                  value: BRANCH_CODES.length,
-                  color: "from-purple-500/10 to-purple-500/5",
-                },
-                {
-                  icon: Banknote,
-                  label: "With Stipend",
-                  value: COMPANIES.filter((c) => c.salary).length,
-                  color: "from-amber-500/10 to-amber-500/5",
-                },
-              ].map(({ icon: Icon, label, value, color }) => (
-                <div key={label} className="flex flex-col items-center gap-2">
-                  <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br ${color} shadow-sm`}
-                  >
-                    <Icon className="h-5 w-5 text-primary" />
-                  </div>
-                  <div className="text-center">
-                    <span className="text-2xl font-bold tracking-tight">
-                      {value}
-                    </span>
-                    <span className="ml-1 text-xs font-medium text-muted-foreground">
-                      {label}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div> */}
+    {/* CTA Buttons */}
+    <div className="mx-auto mb-10 flex max-w-2xl flex-wrap justify-center gap-4">
+      <Link 
+        href="https://chat.whatsapp.com/K1dzuf90q960lduulTPz59" 
+        className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-lg active:scale-95"
+      >
+        <MessageCircle className="h-4 w-4" />
+        Join WhatsApp
+      </Link>
+      <Link 
+        href="https://forms.gle/HXyZYJ5mBxNKxoJM6" 
+        className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white dark:text-black  transition-all hover:opacity-90 hover:shadow-lg active:scale-95"
+      >
+        <FileEdit className="h-4 w-4" />
+        Register Now
+      </Link>
+    </div>
+
+    {/* Stats row */}
+    <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-12">
+      {[
+        {
+          icon: Building2,
+          label: "Companies",
+          value: COMPANIES.length,
+          color: "from-blue-500/10 to-blue-500/5",
+        },
+        {
+          icon: MapPin,
+          label: "Locations",
+          // Fixed split logic to be more robust
+          value: new Set(COMPANIES.flatMap((c) => c.location.split(",").map(s => s.trim()))).size,
+          color: "from-emerald-500/10 to-emerald-500/5",
+        },
+        {
+          icon: GraduationCap,
+          label: "Branches",
+          value: BRANCH_CODES.length,
+          color: "from-purple-500/10 to-purple-500/5",
+        },
+        {
+          icon: Banknote,
+          label: "Open Vacancies",
+          // Calculate total from the new vacancy strings
+          value: COMPANIES.reduce((acc, curr) => acc + (parseInt(curr.vacancy) || 0), 0) || "1800+",
+          color: "from-amber-500/10 to-amber-500/5",
+        },
+      ].map(({ icon: Icon, label, value, color }) => (
+        <div key={label} className="flex flex-col items-center gap-2 transition-transform hover:scale-105">
+          <div
+            className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br ${color} shadow-sm border border-white/10`}
+          >
+            <Icon className="h-5 w-5 text-primary" />
           </div>
-        </section>
+          <div className="text-center">
+            <span className="block text-2xl font-bold tracking-tight">
+              {value}
+            </span>
+            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+              {label}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
         {/* ── Search & Filters ── */}
         <section className="sticky top-15.25 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 px-4 py-4 shadow-sm">

@@ -15,61 +15,36 @@ interface CompanyDialogProps {
   company: Company;
 }
 
-export function CompanyDialog({
-  open,
-  onOpenChange,
-  company,
-}: CompanyDialogProps) {
+export function CompanyDialog({ open, onOpenChange, company }: CompanyDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-lg">{company.name}</DialogTitle>
+          <DialogTitle>{company.name}</DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-4 text-sm">
-          {/* Company Logo */}
-          <div className="flex items-center justify-center">
-            <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-border/50 bg-white shadow-sm">
-              <Image
-                src="/company-logo-placeholder.svg"
-                alt={`${company.name} logo`}
-                width={48}
-                height={48}
-                className="h-full w-full object-contain p-1.5"
-                priority
-              />
+        <div className="space-y-6 py-4">
+          <div className="flex items-center gap-4">
+            <div className="h-20 w-20 relative rounded-2xl border bg-white p-2">
+                <Image src={company.image} alt={company.name} fill className="object-contain p-2" />
+            </div>
+            <div>
+                <p className="text-sm text-muted-foreground">Interview Location</p>
+                <p className="text-lg font-bold text-primary">{company.room}</p>
+                <p className="text-sm font-medium">{company.floor} Floor</p>
             </div>
           </div>
-          {/* Branches */}
-          <div className="flex flex-wrap gap-2">
-            {company.branches.map((b) => (
-              <Badge key={b} variant="outline">
-                {BRANCH_MAP[b] ?? b}
-              </Badge>
-            ))}
+
+          <div className="grid gap-4 border-t pt-4">
+             <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Location</span>
+                <span className="font-medium">{company.location}</span>
+             </div>
+             <div className="flex flex-col gap-1">
+                <span className="text-muted-foreground">Job Roles / Vacancy</span>
+                <span className="text-sm bg-muted p-2 rounded-lg">{company.vacancy || "Not specified"}</span>
+             </div>
           </div>
-
-          {/* Location */}
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <MapPin className="h-4 w-4" />
-            <span>{company.location}</span>
-          </div>
-
-          {/* Vacancy */}
-          {company.vacancy && (
-            <div className="flex items-start gap-2 text-muted-foreground">
-              <Users className="h-4 w-4 mt-0.5" />
-              <span>{company.vacancy}</span>
-            </div>
-          )}
-
-          {/* Salary */}
-          {company.salary && (
-            <div className="font-medium text-green-600">
-              💰 {company.salary}
-            </div>
-          )}
         </div>
       </DialogContent>
     </Dialog>

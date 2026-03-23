@@ -30,7 +30,7 @@ export default function CompanyCard({
           {/* Company Logo */}
           <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-border/50 bg-white shadow-sm">
             <Image
-              src={"/company-logo-placeholder.svg"}
+              src={company.image || "/company-logo-placeholder.svg"}
               alt={`${company.name} logo`}
               className="h-full w-full object-contain p-1.5"
               width={50}
@@ -43,11 +43,6 @@ export default function CompanyCard({
             <CardTitle className="text-lg font-semibold leading-tight tracking-tight line-clamp-2">
               {company.name}
             </CardTitle>
-            {company.salary && (
-              <Badge className="mt-1.5 inline-flex bg-linear-to-r from-green-50 to-emerald-50 text-green-700 border border-green-200 dark:from-green-950/60 dark:to-emerald-950/60 dark:text-green-300 dark:border-green-800 text-xs font-semibold px-2.5 py-1">
-                💰 {company.salary}
-              </Badge>
-            )}
           </div>
         </div>
       </CardHeader>
