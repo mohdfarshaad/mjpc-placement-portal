@@ -175,30 +175,17 @@ export default function PlacementPortal() {
     {
       icon: Building2,
       label: "Companies",
-      value: COMPANIES.length,
-    },
-    {
-      icon: MapPin,
-      label: "Locations",
-      value: new Set(
-        COMPANIES.flatMap((c) =>
-          c.location.split(",").map((s) => s.trim())
-        )
-      ).size,
+      value: "53+",
     },
     {
       icon: GraduationCap,
-      label: "Branches",
-      value: BRANCH_CODES.length,
+      label: "Streams",
+      value: "10+",
     },
     {
       icon: Banknote,
       label: "Open Vacancies",
-      value:
-        COMPANIES.reduce(
-          (acc, curr) => acc + (parseInt(curr.vacancy) || 0),
-          0
-        ) || "1800+",
+      value: "1800+",
     },
   ].map(({ icon: Icon, label, value }) => (
     <div
