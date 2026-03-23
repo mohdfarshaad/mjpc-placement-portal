@@ -148,17 +148,21 @@ export default function PlacementPortal() {
           </div>
 
           <div className="mx-auto max-w-4xl relative z-10">
-            {" "}
             {/* Ensure content is above overlays */}
             <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/25 border-none px-3 py-1 text-xs font-semibold tracking-wide backdrop-blur-sm">
-              {" "}
               {/* Added backdrop blur */}
               <Sparkles className="h-3 w-3 mr-1" />
               Recruitment Season 2026
             </Badge>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white animate-in fade-in slide-in-from-bottom-4 duration-700">
-              {" "}
-              {/* Changed text color to white */}
+            <h1
+              className="mb-6
+              text-4xl sm:text-5xl md:text-6xl
+              font-bold tracking-tight text-white
+              animate-in fade-in slide-in-from-bottom-4 duration-700
+              min-h-30 sm:min-h-35 md:min-h-40
+              flex items-center justify-center
+            "
+            >
               {QUOTES[quoteIndex]}
             </h1>
             {/* CTA Buttons */}
