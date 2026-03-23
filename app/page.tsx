@@ -64,16 +64,28 @@ export default function PlacementPortal() {
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
-    return COMPANIES.filter((c) => {
-      const matchesQuery =
-        !q ||
-        c.name.toLowerCase().includes(q) ||
-        c.room.toLowerCase().includes(q) ||
-        c.floor.toLowerCase().includes(q) ||
-        c.branches.some((b) => b.toLowerCase().includes(q)) ||
-        c.location.toLowerCase().includes(q);
 
+    return COMPANIES.filter((c) => {
+      if (!q) return !activeBranch || c.branches.includes(activeBranch);
+
+      const branchNames = c.branches.map(
+        (b) => BRANCH_MAP[b]?.toLowerCase() || b.toLowerCase(),
+      );
+
+      const searchableText = [
+        c.name,
+        c.room,
+        c.floor,
+        c.location,
+        ...c.branches,
+        ...branchNames,
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      const matchesQuery = searchableText.includes(q);
       const matchesBranch = !activeBranch || c.branches.includes(activeBranch);
+
       return matchesQuery && matchesBranch;
     });
   }, [query, activeBranch]);
@@ -138,8 +150,10 @@ export default function PlacementPortal() {
             <Image
               src="/bg2.jpeg"
               alt="Background decoration"
-              className="h-full w-full object-cover blur-[1px]  brightness-[0.9] dark:brightness-[0.6]"
               fill
+              priority
+              sizes="100vw"
+              className="h-full w-full object-cover blur-[1px] brightness-[0.9] dark:brightness-[0.6]"
             />
           </div>
           <div className="absolute inset-0 -z-10 overflow-hidden bg-black/10 dark:bg-black/40">
@@ -240,7 +254,7 @@ export default function PlacementPortal() {
               <Search className="absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
               <Input
                 className="h-11 pl-10 pr-10 text-base rounded-xl border-muted-foreground/20 focus-visible:ring-primary/30"
-                placeholder="Search by company name, branch, location, or role..."
+                placeholder="Search by company name, branch, location..."
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);

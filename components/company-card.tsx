@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
 import { Branch, BRANCH_MAP, COMPANIES } from "@/app/data";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { MapPin, Users } from "lucide-react";
@@ -33,8 +32,8 @@ export default function CompanyCard({
               src={company.image || "/company-logo-placeholder.svg"}
               alt={`${company.name} logo`}
               className="h-full w-full object-contain p-1.5"
-              width={50}
-              height={50}
+              width={60}
+              height={60}
             />
           </div>
 
