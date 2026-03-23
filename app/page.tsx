@@ -125,20 +125,29 @@ export default function PlacementPortal() {
         </header>
 
         {/* ── Hero Section ── */}
-      <section className="relative overflow-hidden border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-12 text-center md:py-16">
-  {/* Animated background decoration */}
-  <div className="absolute inset-0 -z-10 overflow-hidden">
-    <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
-    <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
+     <section className="relative overflow-hidden border-b px-4 py-12 text-center md:py-16 min-h-screen">
+  {/* Background Image Layer */}
+  <div className="absolute inset-0 -z-20">
+    <img 
+      src="/bg5.jpeg"
+      alt="Background decoration"
+      className="h-full w-full object-cover brightness-[0.9] dark:brightness-[0.6]" 
+    />
   </div>
 
-  <div className="mx-auto max-w-4xl">
-    <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/15 border-none px-3 py-1 text-xs font-semibold tracking-wide">
+  {/* Existing Animated background decoration (Modified) */}
+  <div className="absolute inset-0 -z-10 overflow-hidden bg-black/10 dark:bg-black/40"> {/* Overlay to enhance text contrast */}
+    <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/10 blur-3xl" /> {/* Increased opacity slightly */}
+    <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" /> {/* Increased opacity slightly */}
+  </div>
+
+  <div className="mx-auto max-w-4xl relative z-10"> {/* Ensure content is above overlays */}
+    <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/25 border-none px-3 py-1 text-xs font-semibold tracking-wide backdrop-blur-sm"> {/* Added backdrop blur */}
       <Sparkles className="h-3 w-3 mr-1" />
       Recruitment Season 2026
     </Badge>
     
-    <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-linear-to-r from-foreground via-foreground to-primary/70 bg-clip-text text-transparent animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white animate-in fade-in slide-in-from-bottom-4 duration-700"> {/* Changed text color to white */}
       {QUOTES[quoteIndex]}
     </h1>
 
@@ -153,7 +162,7 @@ export default function PlacementPortal() {
       </Link>
       <Link 
         href="https://forms.gle/HXyZYJ5mBxNKxoJM6" 
-        className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white dark:text-black  transition-all hover:opacity-90 hover:shadow-lg active:scale-95"
+        className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white dark:text-black transition-all hover:opacity-90 hover:shadow-lg active:scale-95"
       >
         <FileEdit className="h-4 w-4" />
         Register Now
@@ -161,52 +170,65 @@ export default function PlacementPortal() {
     </div>
 
     {/* Stats row */}
-    <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-12">
-      {[
-        {
-          icon: Building2,
-          label: "Companies",
-          value: COMPANIES.length,
-          color: "from-blue-500/10 to-blue-500/5",
-        },
-        {
-          icon: MapPin,
-          label: "Locations",
-          // Fixed split logic to be more robust
-          value: new Set(COMPANIES.flatMap((c) => c.location.split(",").map(s => s.trim()))).size,
-          color: "from-emerald-500/10 to-emerald-500/5",
-        },
-        {
-          icon: GraduationCap,
-          label: "Branches",
-          value: BRANCH_CODES.length,
-          color: "from-purple-500/10 to-purple-500/5",
-        },
-        {
-          icon: Banknote,
-          label: "Open Vacancies",
-          // Calculate total from the new vacancy strings
-          value: COMPANIES.reduce((acc, curr) => acc + (parseInt(curr.vacancy) || 0), 0) || "1800+",
-          color: "from-amber-500/10 to-amber-500/5",
-        },
-      ].map(({ icon: Icon, label, value, color }) => (
-        <div key={label} className="flex flex-col items-center gap-2 transition-transform hover:scale-105">
-          <div
-            className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br ${color} shadow-sm border border-white/10`}
-          >
-            <Icon className="h-5 w-5 text-primary" />
-          </div>
-          <div className="text-center">
-            <span className="block text-2xl font-bold tracking-tight">
-              {value}
-            </span>
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-              {label}
-            </span>
-          </div>
-        </div>
-      ))}
+   <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-12">
+  {[
+    {
+      icon: Building2,
+      label: "Companies",
+      value: COMPANIES.length,
+    },
+    {
+      icon: MapPin,
+      label: "Locations",
+      value: new Set(
+        COMPANIES.flatMap((c) =>
+          c.location.split(",").map((s) => s.trim())
+        )
+      ).size,
+    },
+    {
+      icon: GraduationCap,
+      label: "Branches",
+      value: BRANCH_CODES.length,
+    },
+    {
+      icon: Banknote,
+      label: "Open Vacancies",
+      value:
+        COMPANIES.reduce(
+          (acc, curr) => acc + (parseInt(curr.vacancy) || 0),
+          0
+        ) || "1800+",
+    },
+  ].map(({ icon: Icon, label, value }) => (
+    <div
+      key={label}
+      className="flex flex-col items-center gap-2 transition-transform hover:scale-105"
+    >
+      {/* ICON BOX */}
+      <div
+        className="
+          flex h-12 w-12 items-center justify-center rounded-2xl
+          bg-white/10 backdrop-blur-md
+          border border-white/30
+          shadow-lg
+        "
+      >
+        <Icon className="h-5 w-5 text-white drop-shadow" />
+      </div>
+
+      {/* TEXT */}
+      <div className="text-center">
+        <span className="block text-2xl font-bold tracking-tight text-white drop-shadow">
+          {value}
+        </span>
+        <span className="text-xs font-medium text-white/80 uppercase tracking-wider">
+          {label}
+        </span>
+      </div>
     </div>
+  ))}
+</div>
   </div>
 </section>
 

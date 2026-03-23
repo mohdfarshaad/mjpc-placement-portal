@@ -135,7 +135,7 @@ export const COMPANIES: Company[] = [
   {
     sl: 13,
     name: "Icher Mobile Technologies Pvt Ltd",
-    branches: ["EE", "CE"],
+    branches: ["EE"],
     location: "Kottakkal",
     vacancy: "10 positions",
     image: "/company-logos/sl13.jpg",
@@ -570,8 +570,8 @@ export const BRANCH_CODES = Array.from(
 
 export const QUOTES = [
   "MAJLIS MEGA PLACEMENT DRIVE 2026",
-  "1800+ Vacancies. One Platform.",
-  "Your Career Begins Here",
+  "Connecting Talent with Opportunity Across Industries",
+  "1800+ Vacancies.Explore Companies, and Career Paths.",
   "Build Your Future, One Step at a Time",
 ];
 
