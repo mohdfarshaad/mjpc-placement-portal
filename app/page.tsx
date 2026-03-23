@@ -11,7 +11,6 @@ import {
   Calendar,
   Sparkles,
   Building2,
-  MapPin,
   Banknote,
   MessageCircle,
   FileEdit,
@@ -38,11 +37,19 @@ import { CompanyDialog } from "../components/company-dialog";
 import CompanyCard from "@/components/company-card";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export default function PlacementPortal() {
   const [query, setQuery] = useState("");
   const [activeBranch, setActiveBranch] = useState<Branch | null>(null);
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState<
     (typeof COMPANIES)[0] | null
   >(null);
@@ -56,20 +63,20 @@ export default function PlacementPortal() {
   }, []);
 
   const filtered = useMemo(() => {
-  const q = query.toLowerCase().trim();
-  return COMPANIES.filter((c) => {
-    const matchesQuery =
-      !q ||
-      c.name.toLowerCase().includes(q) ||
-      c.room.toLowerCase().includes(q) || 
-      c.floor.toLowerCase().includes(q) || 
-      c.branches.some(b => b.toLowerCase().includes(q)) ||
-      c.location.toLowerCase().includes(q);
-    
-    const matchesBranch = !activeBranch || c.branches.includes(activeBranch);
-    return matchesQuery && matchesBranch;
-  });
-}, [query, activeBranch]);
+    const q = query.toLowerCase().trim();
+    return COMPANIES.filter((c) => {
+      const matchesQuery =
+        !q ||
+        c.name.toLowerCase().includes(q) ||
+        c.room.toLowerCase().includes(q) ||
+        c.floor.toLowerCase().includes(q) ||
+        c.branches.some((b) => b.toLowerCase().includes(q)) ||
+        c.location.toLowerCase().includes(q);
+
+      const matchesBranch = !activeBranch || c.branches.includes(activeBranch);
+      return matchesQuery && matchesBranch;
+    });
+  }, [query, activeBranch]);
 
   const hasFilters = query.trim() !== "" || activeBranch !== null;
 
@@ -91,14 +98,14 @@ export default function PlacementPortal() {
             {/* Left */}
             <div className="flex items-center gap-3 min-w-0">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 shadow-lg overflow-hidden border border-border/50">
-  <Image 
-    src="/mjpc-logo.jpeg" 
-    alt="logo" 
-    height={40} 
-    width={40} 
-    className="h-full w-full object-cover" 
-  />
-</div>
+                <Image
+                  src="/mjpc-logo.jpeg"
+                  alt="logo"
+                  height={40}
+                  width={40}
+                  className="h-full w-full object-cover"
+                />
+              </div>
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold leading-tight tracking-tight sm:text-base">
                   Majlis Placement Drive
@@ -125,99 +132,101 @@ export default function PlacementPortal() {
         </header>
 
         {/* ── Hero Section ── */}
-     <section className="relative overflow-hidden border-b px-4 py-12 text-center md:py-16 min-h-screen">
-  {/* Background Image Layer */}
-  <div className="absolute inset-0 -z-20">
-    <img 
-      src="/bg2.jpeg"
-      alt="Background decoration"
-    className="h-full w-full object-cover blur-[2px]  brightness-[0.9] dark:brightness-[0.6]"
-    />
-  </div>
+        <section className="relative overflow-hidden border-b px-4 py-12 text-center md:py-16 ">
+          {/* Background Image Layer */}
+          <div className="absolute inset-0 -z-20">
+            <Image
+              src="/bg2.jpeg"
+              alt="Background decoration"
+              className="h-full w-full object-cover blur-[1px]  brightness-[0.9] dark:brightness-[0.6]"
+              fill
+            />
+          </div>
+          <div className="absolute inset-0 -z-10 overflow-hidden bg-black/10 dark:bg-black/40">
+            <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />{" "}
+            <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />{" "}
+          </div>
 
-  {/* Existing Animated background decoration (Modified) */}
-  <div className="absolute inset-0 -z-10 overflow-hidden bg-black/10 dark:bg-black/40"> {/* Overlay to enhance text contrast */}
-    <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/10 blur-3xl" /> {/* Increased opacity slightly */}
-    <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" /> {/* Increased opacity slightly */}
-  </div>
-
-  <div className="mx-auto max-w-4xl relative z-10"> {/* Ensure content is above overlays */}
-    <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/25 border-none px-3 py-1 text-xs font-semibold tracking-wide backdrop-blur-sm"> {/* Added backdrop blur */}
-      <Sparkles className="h-3 w-3 mr-1" />
-      Recruitment Season 2026
-    </Badge>
-    
-    <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white animate-in fade-in slide-in-from-bottom-4 duration-700"> {/* Changed text color to white */}
-      {QUOTES[quoteIndex]}
-    </h1>
-
-    {/* CTA Buttons */}
-    <div className="mx-auto mb-10 flex max-w-2xl flex-wrap justify-center gap-4">
-      <Link 
-        href="https://chat.whatsapp.com/K1dzuf90q960lduulTPz59" 
-        className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-lg active:scale-95"
-      >
-        <MessageCircle className="h-4 w-4" />
-        Join WhatsApp
-      </Link>
-      <Link 
-        href="https://forms.gle/HXyZYJ5mBxNKxoJM6" 
-        className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white dark:text-black transition-all hover:opacity-90 hover:shadow-lg active:scale-95"
-      >
-        <FileEdit className="h-4 w-4" />
-        Register Now
-      </Link>
-    </div>
-
-    {/* Stats row */}
-   <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-12">
-  {[
-    {
-      icon: Building2,
-      label: "Companies",
-      value: "53+",
-    },
-    {
-      icon: GraduationCap,
-      label: "Streams",
-      value: "10+",
-    },
-    {
-      icon: Banknote,
-      label: "Open Vacancies",
-      value: "1800+",
-    },
-  ].map(({ icon: Icon, label, value }) => (
-    <div
-      key={label}
-      className="flex flex-col items-center gap-2 transition-transform hover:scale-105"
-    >
-      {/* ICON BOX */}
-      <div
-        className="
+          <div className="mx-auto max-w-4xl relative z-10">
+            {" "}
+            {/* Ensure content is above overlays */}
+            <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/25 border-none px-3 py-1 text-xs font-semibold tracking-wide backdrop-blur-sm">
+              {" "}
+              {/* Added backdrop blur */}
+              <Sparkles className="h-3 w-3 mr-1" />
+              Recruitment Season 2026
+            </Badge>
+            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white animate-in fade-in slide-in-from-bottom-4 duration-700">
+              {" "}
+              {/* Changed text color to white */}
+              {QUOTES[quoteIndex]}
+            </h1>
+            {/* CTA Buttons */}
+            <div className="mx-auto mb-10 flex max-w-2xl flex-wrap justify-center gap-4">
+              <Link
+                href="https://chat.whatsapp.com/K1dzuf90q960lduulTPz59"
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-lg active:scale-95"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Join WhatsApp
+              </Link>
+              <Link
+                href="https://forms.gle/HXyZYJ5mBxNKxoJM6"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white dark:text-black transition-all hover:opacity-90 hover:shadow-lg active:scale-95"
+              >
+                <FileEdit className="h-4 w-4" />
+                Register Now
+              </Link>
+            </div>
+            {/* Stats row */}
+            <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-12">
+              {[
+                {
+                  icon: Building2,
+                  label: "Companies",
+                  value: "53+",
+                },
+                {
+                  icon: GraduationCap,
+                  label: "Streams",
+                  value: "10+",
+                },
+                {
+                  icon: Banknote,
+                  label: "Open Vacancies",
+                  value: "1800+",
+                },
+              ].map(({ icon: Icon, label, value }) => (
+                <div
+                  key={label}
+                  className="flex flex-col items-center gap-2 transition-transform hover:scale-105"
+                >
+                  {/* ICON BOX */}
+                  <div
+                    className="
           flex h-12 w-12 items-center justify-center rounded-2xl
           bg-white/10 backdrop-blur-md
           border border-white/30
           shadow-lg
         "
-      >
-        <Icon className="h-5 w-5 text-white drop-shadow" />
-      </div>
+                  >
+                    <Icon className="h-5 w-5 text-white drop-shadow" />
+                  </div>
 
-      {/* TEXT */}
-      <div className="text-center">
-        <span className="block text-2xl font-bold tracking-tight text-white drop-shadow">
-          {value}
-        </span>
-        <span className="text-xs font-medium text-white/80 uppercase tracking-wider">
-          {label}
-        </span>
-      </div>
-    </div>
-  ))}
-</div>
-  </div>
-</section>
+                  {/* TEXT */}
+                  <div className="text-center">
+                    <span className="block text-2xl font-bold tracking-tight text-white drop-shadow">
+                      {value}
+                    </span>
+                    <span className="text-xs font-medium text-white/80 uppercase tracking-wider">
+                      {label}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* ── Search & Filters ── */}
         <section className="top-15.25 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 px-4 py-4 shadow-sm">
@@ -244,86 +253,136 @@ export default function PlacementPortal() {
               )}
             </div>
 
-            {/* Branch filters */}
-            <div className="flex flex-col  flex-wrap items-center sm:items-start gap-3">
-              <div className="flex  items-center gap-1.5 text-sm font-medium text-muted-foreground">
-                <Filter className="h-3.5 w-3.5" />
-                <span>Filter by branch:</span>
-              </div>
-              <div className="flex flex-col flex-wrap gap-2">
-                {BRANCH_CODES.map((code) => {
-                  const isActive = activeBranch === code;
-                  const branchColor =
-                    BRANCH_COLORS[code] ||
-                    "bg-muted text-muted-foreground border-border";
-                  return (
-                    <Tooltip key={code}>
-                      <TooltipTrigger asChild>
-                        <button
-                          onClick={() => toggleBranch(code)}
-                          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-all duration-200 ${
-                            isActive
-                              ? `${branchColor} ring-2 ring-primary/40 ring-offset-1 ring-offset-background shadow-sm`
-                              : "border-border bg-background text-muted-foreground hover:border-primary/40 hover:text-foreground hover:bg-muted/50"
-                          }`}
-                        >
+            {/* Desktop Branch Filters */}
+            <div className="hidden md:flex flex-wrap items-center gap-2">
+              {BRANCH_CODES.map((code) => {
+                const isActive = activeBranch === code;
+                const branchColor =
+                  BRANCH_COLORS[code] ||
+                  "bg-muted text-muted-foreground border-border";
+
+                return (
+                  <Tooltip key={code}>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={() => toggleBranch(code)}
+                        className={`inline-flex items-center gap-1 rounded-full border
+            px-2 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm
+            transition-all duration-200
+            ${
+              isActive
+                ? `${branchColor} ring-2 ring-primary/40`
+                : "border-border bg-background text-muted-foreground hover:border-primary/40 hover:text-foreground hover:bg-muted/50"
+            }`}
+                      >
                         {BRANCH_MAP[code]}
-                          {isActive && <X className="h-3 w-3" />}
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom" className="text-sm">
-                        <p>{BRANCH_MAP[code] ?? code}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  );
-                })}
-              </div>
+                        {isActive && <X className="h-3 w-3" />}
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom">
+                      {BRANCH_MAP[code]}
+                    </TooltipContent>
+                  </Tooltip>
+                );
+              })}
             </div>
+
+            {/* Mobile Filter Button */}
+            <div className="flex items-center justify-between md:hidden">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsFilterOpen(true)}
+                className="flex items-center gap-2"
+              >
+                <Filter className="h-4 w-4" />
+                Filters
+              </Button>
+            </div>
+
+            {/* Branch filters */}
+            <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+              <SheetContent side="bottom" className="rounded-t-2xl">
+                <SheetHeader>
+                  <SheetTitle>Filter by Branch</SheetTitle>
+                </SheetHeader>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {BRANCH_CODES.map((code) => {
+                    const isActive = activeBranch === code;
+                    const branchColor =
+                      BRANCH_COLORS[code] ||
+                      "bg-muted text-muted-foreground border-border";
+
+                    return (
+                      <button
+                        key={code}
+                        onClick={() => {
+                          toggleBranch(code);
+                          setIsFilterOpen(false);
+                        }}
+                        className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-sm
+            ${
+              isActive
+                ? `${branchColor} ring-2 ring-primary/40`
+                : "border-border bg-background text-muted-foreground"
+            }`}
+                      >
+                        {BRANCH_MAP[code]}
+                      </button>
+                    );
+                  })}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </section>
 
         {/* ── Results ── */}
-        <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10">
+        <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10 overflow-hidden">
           {/* Results meta */}
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <Badge
-                variant="secondary"
-                className="text-sm px-3 py-1 font-normal"
-              >
-                <Users className="h-3.5 w-3.5 mr-1.5" />
-                {filtered.length} / {COMPANIES.length} companies
-              </Badge>
-              {activeBranch && (
+          <ScrollArea>
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
                 <Badge
-                  variant="outline"
-                  className="text-sm px-3 py-1 font-normal gap-1.5 bg-primary/5 border-primary/20"
+                  variant="secondary"
+                  className="text-sm px-3 py-1 font-normal"
                 >
-                  <GraduationCap className="h-3 w-3" />
-                  {BRANCH_MAP[activeBranch] ?? activeBranch}
+                  <Users className="h-3.5 w-3.5 mr-1.5" />
+                  {filtered.length} / {COMPANIES.length} companies
                 </Badge>
-              )}
-              {query && (
-                <Badge
-                  variant="outline"
-                  className="text-sm px-3 py-1 font-normal gap-1.5"
+                {activeBranch && (
+                  <Badge
+                    variant="outline"
+                    className="text-sm px-3 py-1 font-normal gap-1.5 bg-primary/5 border-primary/20"
+                  >
+                    <GraduationCap className="h-3 w-3" />
+                    {BRANCH_MAP[activeBranch] ?? activeBranch}
+                  </Badge>
+                )}
+                {query && (
+                  <Badge
+                    variant="outline"
+                    className="text-sm px-3 py-1 font-normal gap-1.5"
+                  >
+                    <Search className="h-3 w-3" />
+                    {query}
+                  </Badge>
+                )}
+              </div>
+              {hasFilters && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearAll}
+                  className="h-8 text-sm gap-1.5 hover:bg-muted"
                 >
-                  <Search className="h-3 w-3" />
-                  {query}
-                </Badge>
+                  <X className="h-3.5 w-3.5" /> Clear all filters
+                </Button>
               )}
             </div>
-            {hasFilters && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={clearAll}
-                className="h-8 text-sm gap-1.5 hover:bg-muted"
-              >
-                <X className="h-3.5 w-3.5" /> Clear all filters
-              </Button>
-            )}
-          </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
 
           {/* Grid */}
           {filtered.length === 0 ? (

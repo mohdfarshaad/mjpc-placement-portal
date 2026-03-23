@@ -4,6 +4,7 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -20,9 +21,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mjpc Placements Drive 2026",
   description: "Majlis Polytechnic Placements Drive 2026",
-  icons:{
-    icon:"/mjpc-logo.jpeg"
-  }
+  icons: {
+    icon: "/mjpc-logo.jpeg",
+  },
 };
 
 export default function RootLayout({
@@ -42,7 +43,6 @@ export default function RootLayout({
         "font-sans",
         inter.variable,
       )}
-      
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider
@@ -51,7 +51,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider>{children}</TooltipProvider>
+          <TooltipProvider>
+            {children}
+            <Analytics />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
