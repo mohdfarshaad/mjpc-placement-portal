@@ -40,7 +40,7 @@ export const COMPANIES: Company[] = [
     vacancy: "Trainee Engineer",
     image: "/company-logos/sl3.jpg",
     floor: "1st",
-    room: "S1 CT (F29)"
+    room: "Board Room"
   },
   {
     sl: 4,
@@ -60,7 +60,7 @@ export const COMPANIES: Company[] = [
     vacancy: "50 positions",
     image: "/company-logos/sl5.jpg",
     floor: "2nd",
-    room: "Drawing hall 2 (3rd Door)"
+    room: "Drawing Hall 2 (3rd Door)"
   },
   {
     sl: 6,
@@ -90,7 +90,7 @@ export const COMPANIES: Company[] = [
     vacancy: "Shift In-Charge",
     image: "/company-logos/sl8.jpg",
     floor: "2nd",
-    room: "Drawing hall 2 (2nd Door)"
+    room: "Drawing Hall 2 (2nd Door)"
   },
   {
     sl: 9,
@@ -189,8 +189,8 @@ export const COMPANIES: Company[] = [
     location: "Chennai",
     vacancy: "Trainee Engineer",
     image: "/company-logos/s19.jpg",
-    floor: "1st",
-    room: "S1 CE (F25)"
+    floor: "2nd",
+    room: "S59 (Near CT Dpt)"
   },
   {
     sl: 20,
@@ -209,8 +209,8 @@ export const COMPANIES: Company[] = [
     location: "Kerala",
     vacancy: "Python, Data Science, MERN Developers",
     image: "/company-logos/sl21.jpg",
-    floor: "Ground",
-    room: "Fab Lab"
+    floor: "Under Ground",
+    room: "Thermal Lab "
   },
   {
     sl: 22,
@@ -290,7 +290,7 @@ export const COMPANIES: Company[] = [
     vacancy: "Advisor, Warranty Trainee",
     image: "/company-logos/sl29.jpg",
     floor: "2nd",
-    room: "S45"
+    room: "S45 (S4 CE)"
   },
   {
     sl: 30,
@@ -389,8 +389,8 @@ export const COMPANIES: Company[] = [
     location: "Ernakulam",
     vacancy: "Trainee",
     image: "/company-logos/sl39.jpg",
-    floor: "Ground",
-    room: "G02 Environmental Engineering Lab"
+    floor: "Under Ground",
+    room: "Thermal Lab"
   },
   {
     sl: 42,
@@ -470,7 +470,7 @@ export const COMPANIES: Company[] = [
     vacancy: "Junior Software Developer",
     image: "/company-logos/sl50.jpg",
     floor: "1st",
-    room: "Security Room"
+    room: "Library Door1"
   },
   {
     sl: 52,
@@ -489,7 +489,7 @@ export const COMPANIES: Company[] = [
     location: "Mysore",
     vacancy: "Production Operator",
     image: "/company-logos/sl53.jpg",
-    floor: "Ground",
+    floor: "1st",
     room: "General Department"
   },
   {
@@ -499,7 +499,7 @@ export const COMPANIES: Company[] = [
     location: "Mysore",
     vacancy: "Production Operator",
     image: "/company-logos/sl54.jpg",
-    floor: "Ground",
+    floor: "1st",
     room: "General Department"
   },
   {
@@ -510,7 +510,7 @@ export const COMPANIES: Company[] = [
     vacancy: "Service Engineer",
     image: "/company-logos/sl55.jpg",
     floor: "2nd",
-    room: "Drawing hall 2 (1st Door)"
+    room: "Drawing Hall 2 (1st Door)"
   },
   {
     sl: 56,
@@ -529,8 +529,8 @@ export const COMPANIES: Company[] = [
     location: "Kerala",
     vacancy: "Trainee",
     image: "/company-logos/sl57.jpg",
-    floor: "Ground",
-    room: "Library Room 2"
+    floor: "1st",
+    room: "Library Door2"
   },
   {
     sl: 58,
@@ -539,23 +539,28 @@ export const COMPANIES: Company[] = [
     location: "KOZHIKODE",
     vacancy: "UNITY DEVOLOPER INTERN,VIDEO EDITOR,SALES AND MARKETING, EXECUTIVE,OFFICE ADMIN",
     image: "/company-logos/sl58.jpg",
-   floor: "2nd",
-  room: "S59 (Near CT Dpt)"
-  }
+   floor: "1st",
+  room: "S1 CE F25"
+  },
+  {
+    sl: 59,
+    name: "Losange Technologies",    
+    branches: ["CT","EE"],
+    location: "Thrissur",
+    vacancy:
+      "Hardware & Network Engineer, CCTV Technician and Electrician",
+    image: "/company-logos/sl40.jpg",
+    floor: "Ground",
+    room: "G02 Environmental Lab"
+  },
 ];
 
 export const BRANCH_MAP: Record<string, string> = {
-
-  CT: "Computer",
-
-  CE: "Civil",
-
-  EE: "Electrical & Eletronics",
-
-  ME: "Mechanical",
-
-  AU: "Automobile",
-
+  CT: "Computer & Allied Branches",
+  CE: "Civil & Allied Branches",
+  EE: "Electrical, Electronics & Instrumentation Allied Branches",
+  ME: "Mechanical & Mechatronics Allied Branches",
+  AU: "Automobile & Allied Branches",
 };
 
 
@@ -569,10 +574,10 @@ export const BRANCH_CODES = Array.from(
 
 
 export const QUOTES = [
-  "MAJLIS MEGA PLACEMENT DRIVE 2026",
-  "Connecting Talent with Opportunity Across Industries",
-  "1800+ Vacancies.Explore Companies, and Career Paths.",
-  "Build Your Future, One Step at a Time",
+  "MAJLIS Mega Placement Drive 2026",
+  "Connecting Talent with Opportunities Across Industries",
+  "1800+ Vacancies Across Companies and Career Paths",
+  "Build Your Future with the Right Opportunity",
 ];
 
 

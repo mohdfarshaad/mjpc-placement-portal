@@ -129,9 +129,9 @@ export default function PlacementPortal() {
   {/* Background Image Layer */}
   <div className="absolute inset-0 -z-20">
     <img 
-      src="/bg5.jpeg"
+      src="/bg2.jpeg"
       alt="Background decoration"
-      className="h-full w-full object-cover brightness-[0.9] dark:brightness-[0.6]" 
+    className="h-full w-full object-cover blur-[2px]  brightness-[0.9] dark:brightness-[0.6]"
     />
   </div>
 
@@ -220,7 +220,7 @@ export default function PlacementPortal() {
 </section>
 
         {/* ── Search & Filters ── */}
-        <section className="sticky top-15.25 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 px-4 py-4 shadow-sm">
+        <section className="top-15.25 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 px-4 py-4 shadow-sm">
           <div className="mx-auto max-w-7xl space-y-4">
             {/* Search input */}
             <div className="relative">
@@ -245,12 +245,12 @@ export default function PlacementPortal() {
             </div>
 
             {/* Branch filters */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
+            <div className="flex flex-col  flex-wrap items-center sm:items-start gap-3">
+              <div className="flex  items-center gap-1.5 text-sm font-medium text-muted-foreground">
                 <Filter className="h-3.5 w-3.5" />
                 <span>Filter by branch:</span>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-col flex-wrap gap-2">
                 {BRANCH_CODES.map((code) => {
                   const isActive = activeBranch === code;
                   const branchColor =
@@ -267,7 +267,7 @@ export default function PlacementPortal() {
                               : "border-border bg-background text-muted-foreground hover:border-primary/40 hover:text-foreground hover:bg-muted/50"
                           }`}
                         >
-                          {code}
+                        {BRANCH_MAP[code]}
                           {isActive && <X className="h-3 w-3" />}
                         </button>
                       </TooltipTrigger>
