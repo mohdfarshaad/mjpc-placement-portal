@@ -84,11 +84,11 @@ export const COMPANIES: Company[] = [
   },
   {
     sl: 8,
-    name: "Royal Enfield",
-    branches: ["ME", "AU"],
-    location: "Chennai",
-    vacancy: "Shift In-Charge",
-    image: "/company-logos/sl8.jpg",
+    name: "Mark Hero Motors",
+    branches: [ "AU"],
+    location: "Angadippuram",
+    vacancy: "5+ Positions",
+    image: "/company-logos/sl8.png",
     floor: "2nd",
     room: "Drawing Hall 2 (2nd Door)"
   },
