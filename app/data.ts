@@ -357,7 +357,7 @@ export const COMPANIES: Company[] = [
     name: "Bridgeon Solutions LLP",
     branches: ["CT"],
     location: "Kerala",
-    vacancy: "Coordinators, BDE, Video Editor",
+    vacancy: "Coordinators, BDE, Video Editor,Developer, Academic adviser, HR assistant, business development executive, offline marketing",
     image: "/company-logos/sl36.jpg",
     floor: "Ground",
     room: "G07 EL Workshop"
@@ -427,7 +427,7 @@ export const COMPANIES: Company[] = [
     name: "HK School Trenz",
     branches: ["CT"],
     location: "Kerala",
-    vacancy: "Trainee Engineer",
+    vacancy: "Trainee Engineer, Marketing Managers, Junior Trainers, Academic Co Ordinator",
     image: "/company-logos/sl45.jpg",
     floor: "Ground",
     room: "G06 NSS Room"
