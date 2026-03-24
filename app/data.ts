@@ -457,7 +457,7 @@ export const COMPANIES: Company[] = [
     name: "Refos Energy Pvt Ltd",
     branches: ["EE"],
     location: "Kozhikode",
-    vacancy: "Sales Manager",
+    vacancy: "Sales Manager, Cadd Desiner, Technician",
     image: "/company-logos/sl48.jpg",
     floor: "Ground",
     room: "G01"
@@ -504,11 +504,11 @@ export const COMPANIES: Company[] = [
   },
   {
     sl: 55,
-    name: "KM Tractors",
-    branches: ["ME", "AU"],
+    name: "Institute of Automobile Technology",
+    branches: ["EE","ME", "AU"],
     location: "Kerala",
-    vacancy: "Service Engineer",
-    image: "/company-logos/sl55.jpg",
+    vacancy: "Marketing Executive, Tele Callers, Lab Assistant",
+    image: "/company-logos/sl55.png",
     floor: "2nd",
     room: "Drawing Hall 2 (1st Door)"
   },
